@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">PenguinPay</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="no_teams">No Teams Found</string>
+    <string name="country">Ghana</string>
+    <string name="invalid_sending_amount">Please ensure to input sending amount in binary</string>
+    <string name="invalid_country">Please ensure to select the receiving country</string>
+    <string name="no_selected_currency">N/A</string>
+    <string name="invalid_phone_number">Invalid phone number format. Please rectify the number</string>
+    <string name="success_message">Congratulations... Your money is on its way</string>
+    <string name="invalid_name">Please ensure to record first and last names</string>
+    <string name="invalid_sending_amount_zero">Please ensure to indicate amount to send in binary</string>
+    <string-array name="countries">
+        <item>Select Receipient\'s Country</item>
+        <item>Kenya</item>
+        <item>Nigeria</item>
+        <item>Tanzania</item>
+        <item>Uganda</item>
+    </string-array>
+
+</resources>
