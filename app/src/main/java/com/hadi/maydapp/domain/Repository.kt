@@ -5,5 +5,4 @@ import io.reactivex.Single
 
 interface Repository {
     fun getShortUrl(url: String): Single<ShortenedUrlEntity>
-//    suspend fun saveAllShortUrl(shortenedUrlDataModel: ShortenedUrlDataModel)
 }

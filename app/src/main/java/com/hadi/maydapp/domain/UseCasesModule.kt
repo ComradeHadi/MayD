@@ -5,7 +5,7 @@ import com.hadi.maydapp.data.repository.LocalUrlReporistoy
 import com.hadi.maydapp.domain.usecases.GetAllUrlsUseCase
 import com.hadi.maydapp.domain.usecases.GetShortenedUrlUseCase
 import com.hadi.maydapp.domain.usecases.SaveShortenedUrlUseCase
-import com.hadi.maydapp.domain.usecases.UseCases
+import com.hadi.maydapp.domain.usecases.UseCasesHolder
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,14 +17,10 @@ class UseCasesModule {
     @Provides
     fun provideShortenedUseCase(repository: Repository) = GetShortenedUrlUseCase(repository = repository)
 
-//    @Singleton
-//    @Provides
-//    fun provideUrlUseCase(localDataSource: LocalDataSource) = GetAllUrlsUseCase(localDataSource = localDataSource)
-
     @Singleton
     @Provides
     fun getUseCases(localUrlRepo: LocalUrlReporistoy) =
-        UseCases(
+        UseCasesHolder(
             GetAllUrlsUseCase(localUrlRepo),
             SaveShortenedUrlUseCase(localUrlRepo)
 

@@ -7,6 +7,5 @@ class SaveShortenedUrlUseCase constructor(
     private val localUrlReporistoy: LocalUrlReporistoy
 ) {
     suspend operator fun invoke(shortenedUrlDataModel: ShortenedUrlDataModel) = localUrlReporistoy.saveShortenedUrl(shortenedUrlDataModel)
-//    suspend fun addUrl(url: ShortenedUrlEntity) = localUrlReporistoy.addUrl(url)
-//    suspend fun getAllUrl() = localUrlReporistoy.getAllShortenedUrls()
+
 }

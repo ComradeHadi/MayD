@@ -8,5 +8,4 @@ class GetShortenedUrlUseCase @Inject constructor(
     private val repository: Repository
 ) {
     fun getShortUrlRates(url: String) = repository.getShortUrl(url)
-    fun saveUrl(shortenedUrlDataModel: ShortenedUrlDataModel) = repository
 }

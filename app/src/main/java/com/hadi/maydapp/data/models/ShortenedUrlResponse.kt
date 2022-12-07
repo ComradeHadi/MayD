@@ -1,6 +1,6 @@
 package com.hadi.maydapp.data.models
 
 data class ShortenedUrlResponse(
-    val ok: String,
+    val ok: Boolean,
     val result: ShortenedUrlDataModel
 )

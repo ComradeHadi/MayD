@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface ServiceApi {
     @GET("shorten")
-    fun getAllRates(@Query("url") url: String): Single<ShortenedUrlResponse>
+    fun getShortenedUrlFromServer(@Query("url") url: String): Single<ShortenedUrlResponse>
 
 }

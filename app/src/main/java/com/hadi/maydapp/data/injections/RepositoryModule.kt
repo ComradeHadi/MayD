@@ -1,13 +1,11 @@
 package com.hadi.maydapp.data.injections
 
 import android.app.Application
-import com.hadi.maydapp.data.datasource.remotedatasource.LocalDataSource
-import com.hadi.maydapp.data.mappers.DataLayerRatesMapper
+import com.hadi.maydapp.data.mappers.DataLayerLinksesMapper
 import com.hadi.maydapp.data.datasource.remotedatasource.ServiceApi
 import com.hadi.maydapp.data.localmodels.RoomUrlDataSource
 import com.hadi.maydapp.data.repository.LocalUrlReporistoy
 import com.hadi.maydapp.data.repository.RepositoryImplementer
-import com.hadi.maydapp.data.repository.UrlDataSource
 import com.hadi.maydapp.domain.Repository
 import dagger.Module
 import dagger.Provides
@@ -18,16 +16,12 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun providesDataLayerRatesMapper() = DataLayerRatesMapper()
-//
-//    @Singleton
-//    @Provides
-//    fun providesDataSource()  =  LocalDataSource
+    fun providesDataLayerLinksMapper() = DataLayerLinksesMapper()
 
     @Singleton
     @Provides
-    fun providesRatesRepository(serviceApi: ServiceApi, dataLayerRatesMapper: DataLayerRatesMapper): Repository {
-        return RepositoryImplementer(serviceApi = serviceApi, dataLayerRatesMapper = dataLayerRatesMapper)
+    fun providesLinksRepository(serviceApi: ServiceApi, dataLayerLinksesMapper: DataLayerLinksesMapper): Repository {
+        return RepositoryImplementer(serviceApi = serviceApi, dataLayerLinksesMapper = dataLayerLinksesMapper)
     }
 
     @Singleton
