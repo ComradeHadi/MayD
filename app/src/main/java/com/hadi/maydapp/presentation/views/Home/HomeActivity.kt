@@ -18,19 +18,16 @@ class HomeActivity : DaggerAppCompatActivity() {
     var EMPTY_STATE: Boolean = false
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var paymentPageBinding: ActivityShortLinkIntroBinding
-    private lateinit var selectedCountry: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         paymentPageBinding = ActivityShortLinkIntroBinding.inflate(layoutInflater)
 
         setContentView(paymentPageBinding.root)
-        Log.e("crush", selectedCountry.toString())
 
         paymentPageBinding = ActivityShortLinkIntroBinding.inflate(layoutInflater)
         homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
         lifecycle.addObserver(homeViewModel)
-        //homeViewModel.ch
 
         val historyListAdapter = HistoryListAdapter()
         recylerViewLinks.adapter = historyListAdapter
@@ -41,35 +38,39 @@ class HomeActivity : DaggerAppCompatActivity() {
             val textTo = input_edit_text.text.toString()
             Toast.makeText(this@HomeActivity, textTo, Toast.LENGTH_LONG).show()
             homeViewModel.getShortenedUrl(textTo)
-            showLinkHistory()
+
         }
 
         homeViewModel.savedLinks.observe(this, {
             if(it.size != 0) {
-                Log.e("11111111 changes 1",  it.size.toString())
                 empty_links_page.visibility = View.GONE
                 historyListAdapter.providelinkHistoryList(it.map { eachItem -> eachItem.toLinkUIModel() })
                 recylerViewLinks.visibility = View.VISIBLE
 
             }
             else{
-                Log.e("11111111 test 2",  it.size.toString())
 
                 empty_links_page.visibility = View.VISIBLE
                 recylerViewLinks.visibility = View.GONE
             }
         })
+        homeViewModel.isThereAnySavedLink.observeForever {
+            Log.e("11111 saved link", it.toString())
+            if(it) {
+                empty_links_page.visibility = View.GONE
+                historyListAdapter.providelinkHistoryList(homeViewModel.savedLinks.value?.map { eachItem -> eachItem.toLinkUIModel() })
+                recylerViewLinks.visibility = View.VISIBLE
+            }
+        }
 
 
     }
 
     private fun observeServerResponse() {
-        homeViewModel.serverShortenedUrl.observe(this, {
+        homeViewModel.serverShortenedUrl.observeForever  {
 
             if(it.data != null){
-                Log.e("11111111 data",  it.data.toString())
-                /** All actions here
-                 * */
+                Log.e("observe 78",  it.data.toString())
 
                 input_edit_text.text.clear()
                 showLinkHistory()
@@ -77,27 +78,22 @@ class HomeActivity : DaggerAppCompatActivity() {
             }
 
 
-        })
+        }
     }
 
     fun showLinkHistory(){
         val historyListAdapter = HistoryListAdapter()
         recylerViewLinks.adapter = historyListAdapter
+        homeViewModel.checkIfThereAnySavedLinks()
         homeViewModel.savedLinks.observe(this, {
-            if(it.size != 0) {
-                Log.e("11111111 test 1",  it.size.toString())
-                empty_links_page.visibility = View.GONE
-                historyListAdapter.providelinkHistoryList(it.map { eachItem -> eachItem.toLinkUIModel() })
-                recylerViewLinks.visibility = View.VISIBLE
-
+            it.forEach(){
+                Log.e("observe 95 show Link", it.toString())
             }
-            else{
-                Log.e("11111111 test 2",  it.size.toString())
-
-                empty_links_page.visibility = View.VISIBLE
-                recylerViewLinks.visibility = View.GONE
-                EMPTY_STATE = true
-            }
+            empty_links_page.visibility = View.GONE
+            historyListAdapter.providelinkHistoryList(it.map { eachItem -> eachItem.toLinkUIModel() })
+            recylerViewLinks.visibility = View.VISIBLE
+//
         })
     }
+
 }

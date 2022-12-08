@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/background_border_history.xml" value="0.113" />
+        <entry key="app/src/main/res/drawable-v24/border_radius.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_del.xml" value="0.113" />
         <entry key="app/src/main/res/drawable-v24/ic_illustration.xml" value="0.113" />
         <entry key="app/src/main/res/drawable-v24/ic_shape.xml" value="0.175" />
         <entry key="app/src/main/res/drawable-v24/link_input_border.xml" value="0.113" />
         <entry key="app/src/main/res/drawable-v24/shorten_background_btn.xml" value="0.113" />
+        <entry key="app/src/main/res/drawable-v24/shorten_background_btn_copied.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_btn.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/drawable/selector_input_border.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/activity_link_history.xml" value="0.23777173913043478" />

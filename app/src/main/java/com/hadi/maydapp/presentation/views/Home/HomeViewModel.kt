@@ -25,13 +25,11 @@ class HomeViewModel @Inject constructor(
     baseSchedulerProvider: BaseSchedulerProvider
 ) :  BaseViewModel(baseSchedulerProvider = baseSchedulerProvider),LifecycleObserver {
 
-    val amount = MutableLiveData<Int>()
-   // val context: Application = Application()
     val savedLinks = MutableLiveData<List<ShortenedUrlDataModel>>()
     val serverShortenedUrl = MutableLiveData<ViewState<LinkUIModel>>()
+    val isThereAnySavedLink = MutableLiveData<Boolean>()
     val coroutineScope = CoroutineScope(Dispatchers.IO)
-//    @Inject
-//    lateinit var localUrlReporistoy : LocalUrlReporistoy
+
     @Inject
     lateinit var useCasesHolder : UseCasesHolder
 
@@ -42,7 +40,7 @@ class HomeViewModel @Inject constructor(
             Log.e("111111111", it.toString())
             serverShortenedUrl.postValue(ViewState.error(it.message))
         }, successConsumer = Consumer {
-            Log.e("111111111", it.toString())
+            Log.e("1111 success", it.toString())
             saveURL(it.toUrlModel())
             serverShortenedUrl.postValue(ViewState.success(
                 linkMapper.mapDomainToPresentationModel(it)))
@@ -54,6 +52,8 @@ class HomeViewModel @Inject constructor(
     fun saveURL(url: ShortenedUrlDataModel){
         coroutineScope.launch {
             useCasesHolder.saveShortenedUrlUseCase(url)
+            isThereAnySavedLink.postValue(true)
+
         }
     }
 
@@ -69,7 +69,6 @@ class HomeViewModel @Inject constructor(
 
         coroutineScope.launch {
             savedLinks.postValue(useCasesHolder.getAllUrlsUseCase())
-            //savedLinks.value?.size
         }
     }
 

@@ -18,6 +18,7 @@
     <string name="success_message">Congratulations... Your money is on its way</string>
     <string name="invalid_name">Please ensure to record first and last names</string>
     <string name="invalid_sending_amount_zero">Please ensure to indicate amount to send in binary</string>
+    <string name="copied_text">COPIED!</string>
     <string-array name="countries">
         <item>Select Receipient\'s Country</item>
         <item>Kenya</item>
